@@ -11,6 +11,25 @@
 |
 */
 
+
+/**
+* Practice
+*/
+Route::any('/practice/{n?}', 'PracticeController@index');
+
+/**
+* Homepage
+*/
 Route::get('/', 'WelcomeController');
+
+/**
+* Book
+*/
 Route::get('/book', 'BookController@index');
 Route::get('/book/{title}', 'BookController@show');
+
+/**
+* Example portion of Foobooks that mirrors what you'll do for P3
+*/
+Route::get('/trivia/', 'TriviaController@index');
+Route::get('/trivia/check-answer', 'TriviaController@checkAnswer');
