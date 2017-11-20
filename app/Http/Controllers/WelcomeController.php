@@ -9,7 +9,8 @@ class WelcomeController extends Controller
     /**
     * Public GET for /
     */
-    public function __invoke() {
+    public function __invoke()
+    {
         return view('welcome');
     }
 }

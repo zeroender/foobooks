@@ -1,7 +1,8 @@
 @extends('layouts.master')
 
 @push('head')
-    <link href='/css/book.css' rel='stylesheet'>
+    <link href='/css/book/index.css' rel='stylesheet'>
+    <link href='/css/book/_book.css' rel='stylesheet'>
 @endpush
 
 @section('title')
@@ -10,14 +11,24 @@
 
 @section('content')
 
-    <h1>All books</h1>
+    <h1>Books</h1>
 
-    @foreach($books as $title => $book)
+    <aside id='newBooks'>
+        <h2>Recently Added</h2>
+        <ul>
+            @foreach($newBooks as $book)
+                <li><a href='/book/{{ kebab_case($book['id']) }}'>{{ $book['title'] }}</a></li>
+            @endforeach
+        </ul>
+    </aside>
+
+    @foreach($books as $book)
         <div class='book cf'>
-            <img src='{{ $book['cover'] }}' class='cover' alt='Cover image for {{ $title }}'>
-            <h2>{{ $title }}</h2>
+            <img src='{{ $book['cover'] }}' class='cover' alt='Cover image for {{ $book['title'] }}'>
+            <h2>{{ $book['title'] }}</h2>
             <p>By {{ $book['author'] }}</p>
-            <a href='/book/{{ kebab_case($title) }}'>View</a>
+            <a href='/book/{{ $book['id'] }}'>View</a> |
+            <a href='/book/{{ $book['id'] }}/edit'>Edit</a>
         </div>
     @endforeach
 

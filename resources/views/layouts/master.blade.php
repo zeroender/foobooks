@@ -16,6 +16,12 @@
 </head>
 <body>
 
+    @if(session('alert'))
+        <div class='alert'>
+            {{ session('alert') }}
+        </div>
+    @endif
+
     <header>
         <a href='/'><img
             src='/images/laravel-foobooks-logo@2x.png'
@@ -26,9 +32,10 @@
         <nav>
             <ul>
                 <li><a href='/trivia'>Trivia</a>
-                <li><a href='/book'>All Books</a>
+                <li><a href='/book'>Books</a>
                 <li><a href='/book/create'>Add a Book</a>
                 <li><a href='/search'>Search</a>
+                <li><a href='/practice'>Practice</a>
             </ul>
         </nav>
     </header>
@@ -42,7 +49,8 @@
         &copy; {{ date('Y') }}
     </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='/js/foobooks.js'></script>
 
     @stack('body')
 

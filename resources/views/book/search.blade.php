@@ -1,8 +1,7 @@
-{{-- /resources/views/book/search.blade.php --}}
 @extends('layouts.master')
 
 @push('head')
-    <link href='/css/book.css' rel='stylesheet'>
+    <link href='/css/book/_book.css' rel='stylesheet'>
 @endpush
 
 @section('title')
