@@ -171,4 +171,33 @@ class BookController extends Controller
             'searchResults' => $searchResults
         ]);
     }
+
+    /*
+    * GET /book/{id}/delete
+    */
+    public function delete($id)
+    {
+        $book = Book::find($id);
+
+        if (!$book) {
+            return redirect('/book')->with('alert', 'Book not found');
+        }
+
+        return view('book.delete')->with(['book' => $book]);
+    }
+
+    /*
+    * DELETE /book/{id}
+    */
+    public function deleteBook($id)
+    {
+
+        $book = Book::find($id);
+
+        $title = $book['title'];
+
+        $book->delete();
+
+        return redirect('/book')->with('alert', $title.' has been deleted');
+    }
 }

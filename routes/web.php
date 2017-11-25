@@ -40,6 +40,9 @@ Route::get('/book/{id}', 'BookController@show');
 # Search all books
 Route::get('/search', 'BookController@search');
 
+# Delete a book
+Route::get('/book/{id}/delete', 'BookController@delete');
+Route::delete('/book/{id}', 'BookController@deleteBook');
 
 /**
 * Example portion of Foobooks that mirrors what you'll do for P3
