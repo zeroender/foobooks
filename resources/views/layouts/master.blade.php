@@ -28,16 +28,7 @@
             style='width:300px'
             alt='Foobooks Logo'></a>
 
-        {{-- ToDo: Make it so active link in nav is highlighted --}}
-        <nav>
-            <ul>
-                <li><a href='/trivia'>Trivia</a>
-                <li><a href='/book'>Books</a>
-                <li><a href='/book/create'>Add a Book</a>
-                <li><a href='/search'>Search</a>
-                <li><a href='/practice'>Practice</a>
-            </ul>
-        </nav>
+        @include('modules.nav')
     </header>
 
     <section id='main'>

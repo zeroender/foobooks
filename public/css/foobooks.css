@@ -177,6 +177,10 @@ label {
     font-style:italic;
 }
 
+a.active:link, a.active:visited, a.active:active, a.active:hover {
+    color:#18bc9c;
+}
+
 
 /*----------------------------------------------------
 Misc
