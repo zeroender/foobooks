@@ -19,4 +19,8 @@
         <input type='submit' value='Yes, Delete this book' class='btn btn-primary btn-small'>
     </form>
 
+    <p class='cancel'>
+        <a href='{{ $previousUrl }}'>No, I changed my mind.</a>
+    </p>
+
 @endsection

@@ -183,7 +183,11 @@ class BookController extends Controller
             return redirect('/book')->with('alert', 'Book not found');
         }
 
-        return view('book.delete')->with(['book' => $book]);
+
+        return view('book.delete')->with([
+          'book' => $book,
+          'previousUrl' => url()->previous() == url()->current() ? '/book' : url()->previous()
+        ]);
     }
 
     /*
@@ -194,10 +198,8 @@ class BookController extends Controller
 
         $book = Book::find($id);
 
-        $title = $book['title'];
-
         $book->delete();
 
-        return redirect('/book')->with('alert', $title.' has been deleted');
+        return redirect('/book')->with('alert', $book->title.' has been deleted');
     }
 }
