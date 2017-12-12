@@ -7,6 +7,8 @@ use Hash;
 use App\Book;
 use App\Author;
 use App\Tag;
+use App\User;
+use Auth;
 
 class BookController extends Controller
 {
@@ -15,13 +17,24 @@ class BookController extends Controller
     */
     public function index()
     {
-        $books = Book::orderBy('title')->get();
+        //$user = $request->user();
 
-        # Get from DB
-        # $newBooks = Book::orderByDesc('created_at')->limit(3)->get();
+        # Note: We're getting the user from the request, but you can also get it like this:
+        $user = Auth::user();
 
-        # Get from collection
-        $newBooks = $books->sortByDesc('created_at')->take(3);
+        if ($user) {
+            # Approach 1)
+            //$books = Book::where('user_id', '=', $user->id)->orderBy('title')->get();
+
+            # Approach 2) Take advantage of Model relationships
+            $books = $user->books()->orderBy('title')->get();
+
+            # Get 3 most recently added books
+            $newBooks = $books->sortByDesc('created_at')->take(3); # Query existing Collection
+        } else {
+            $books = [];
+            $newBooks = [];
+        }
 
         return view('book.index')->with([
             'books' => $books,
@@ -85,6 +98,10 @@ class BookController extends Controller
         $book->published = $request->input('published');
         $book->cover = $request->input('cover');
         $book->purchase_link = $request->input('purchase_link');
+
+        $user = Auth::user();
+
+        $book->user_id = $user->id;
         $book->save();
 
         $book->tags()->sync($request->input('tags'));
